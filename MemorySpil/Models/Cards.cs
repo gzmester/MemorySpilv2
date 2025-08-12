@@ -1,7 +1,7 @@
 using System;
 
 
-namespace MemorySpilV2.Model
+namespace MemorySpil.Model
 {
     public class Cards
     {
