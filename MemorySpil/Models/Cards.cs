@@ -1,24 +1,53 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 
 namespace MemorySpil.Model
 {
-    public class Cards
+    public class Cards : INotifyPropertyChanged
     {
+        private bool _isFlipped;
+        private bool _isMatched;
+
         public int Id { get; set; }
         public string Symbol { get; set; } = string.Empty;
-        public bool IsFlipped { get; set; }
-        public bool IsMatched { get; set; }
+        
+        public bool IsFlipped 
+        { 
+            get => _isFlipped;
+            set
+            {
+                _isFlipped = value;
+                OnPropertyChanged(nameof(IsFlipped));
+            }
+        }
+        
+        public bool IsMatched 
+        { 
+            get => _isMatched;
+            set
+            {
+                _isMatched = value;
+                OnPropertyChanged(nameof(IsMatched));
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         // Constructor 
         public Cards(int id, string symbol)
         {
             Id = id;
             Symbol = symbol;
-            IsFlipped = false;
-            IsMatched = false;
+            _isFlipped = false;
+            _isMatched = false;
         }
 
         // Parameterløs constructor for serialisering/deserialisering

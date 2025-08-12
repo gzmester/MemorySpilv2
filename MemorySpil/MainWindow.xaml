@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemorySpil"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700"
-        Background="Transparent"
-        AllowsTransparency="True"
-        WindowStyle="None">
+        Title="Memory Spil" Height="500" Width="700"
+        Background="LightGray"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
 
     <Border CornerRadius="10" BorderThickness="2" Background="#A86D3E" Opacity="0.98">
         <Border.BorderBrush>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Brown" Offset="0.9"/>
                 <GradientStop Color="#A95656" Offset="1"/>
             </LinearGradientBrush>
@@ -24,58 +24,80 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            
-            
-            
-            <!--Card Grid-->
-            <Grid Grid.Column="0" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-            </Grid>
+            <!-- KORT GRID - Her vises alle 16 kort automatisk -->
+            <ItemsControl Grid.Column="0" Margin="5" ItemsSource="{Binding Cards}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4" Rows="4"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button FontSize="32"
+                                Width="110"
+                                Height="110"
+                                Margin="2"
+                                Background="LightBlue"
+                                Command="{Binding DataContext.CardClickCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding}">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Content" Value="❓"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsFlipped}" Value="True">
+                                            <Setter Property="Content" Value="{Binding Symbol}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsMatched}" Value="True">
+                                            <Setter Property="Background" Value="LightGreen"/>
+                                            <Setter Property="Content" Value="{Binding Symbol}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            
-            
-            
-            <Border Grid.Column="1" CornerRadius="10" Background="#3A3D42" Opacity="100">
-                <StackPanel Margin="5">
-                    <TextBlock Text="Memory Game" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,20"/>
-
-                    <!--Player Name:-->
-                    <TextBlock Text="Player Name" FontSize="20" Foreground="White" HorizontalAlignment="Left" Margin="0,0,0,0"/>
-                    <TextBox Name="PlayerNameTextBox" Width="200" Height="25" Margin="0,0,0,10" HorizontalAlignment="Center" TextChanged="PlayerNameTextBox_TextChanged"/>
+            <!-- SIDE PANEL - Spillernavn, status og knapper -->
+            <Border Grid.Column="1" CornerRadius="10" Background="#3A3D42" Opacity="1" Margin="5">
+                <StackPanel Margin="10">
+                    <!-- Spillernavn input -->
+                    <TextBlock Text="Spillernavn:" Foreground="White" FontWeight="Bold" Margin="0,5"/>
+                    <TextBox Text="{Binding PlayerName, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="25" FontSize="14" Margin="0,5"/>
                     
-                    <!--Timer-->
-                    <TextBlock Text="Timer" FontSize="20" Foreground="White" HorizontalAlignment="Left" Margin="0,10,0,0"/>
-                    <TextBlock Text="0" FontSize="20" Foreground="White" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                    <!-- Game status -->
+                    <TextBlock Text="{Binding GameStatus}" 
+                               Foreground="White" 
+                               FontWeight="Bold" 
+                               FontSize="12"
+                               TextWrapping="Wrap"
+                               Margin="0,20,0,10"/>
                     
-                    <!--Moves-->
-                    <TextBlock Text="Moves" FontSize="20" Foreground="White" HorizontalAlignment="Left" Margin="0,10,0,0"/>
-                    <TextBlock Text="0" FontSize="20" Foreground="White" HorizontalAlignment="Left" Margin="0,0,0,0"/>
-
-                    <!--Save Game-->
-                    <Button Name="SaveGameBtn" Content="Save Game" Width="180" Height="30" Margin="0,160,0,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="NewGameBtn_Click"
-                            Command="{Binding Knap2}"/>
-
-                    <!--New Game-->
-                    <Button Name="NewGameBtn" Content="New Game" Width="180" Height="30" Margin="0,-5,0,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="NewGameBtn_Click"
-                            Command="{Binding Knap}"/>
+                    <!-- Nyt spil knap -->
+                    <Button Content="Nyt Spil" 
+                            Command="{Binding NewGameCommand}"
+                            Height="35"
+                            FontSize="14"
+                            FontWeight="Bold"
+                            Background="#A86D3E"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="0,10"/>
+                    
+                    <!-- Gem spil knap -->
+                    <Button Content="Gem Resultat" 
+                            Command="{Binding SaveGameCommand}"
+                            Height="35"
+                            FontSize="14"
+                            FontWeight="Bold"
+                            Background="#5A5D62"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Margin="0,5"/>
                 </StackPanel>
             </Border>
         </Grid>
-
-       
-
-
-        </Border>    
-    
+    </Border>
 </Window>

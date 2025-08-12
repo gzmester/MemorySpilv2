@@ -68,7 +68,7 @@ namespace MemorySpil.Repository
             if (!File.Exists(_path)) return results;
 
             foreach (var line in File.ReadLines(_path))
-                if (GameStats.TryParseCsv(line, out var s))
+                if (GameStats.TryParseCsv(line, out var s) && s != null)
                     results.Add(s);
 
             return results;

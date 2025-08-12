@@ -39,7 +39,7 @@ namespace MemorySpil.ViewModels
         // Properties til binding
         public ObservableCollection<Cards> Cards { get; set; }
 
-        public string PlayerName
+        public string? PlayerName
         {
             get => _playerName;
             set
@@ -92,13 +92,19 @@ namespace MemorySpil.ViewModels
         }
 
         // Kalder vores MVVM RelayCommand, for at håndtere et kort træk
-        public ICommand CardClickCommand => new RelayCommand(param => OnCardClick((Cards)param));
+        public ICommand CardClickCommand => new RelayCommand(param => 
+        {
+            if (param is Cards clickedCard)
+                OnCardClick(clickedCard);
+        });
 
         // Kalder vores MVVM RelayCommand, for at starte et nyt spil
         public ICommand NewGameCommand => new RelayCommand(() => StartNewGame());
 
         // Kalder vores MVVM RelayCommand, for at gemme spil resultat
         public ICommand SaveGameCommand => new RelayCommand(() => SaveGameStats());
+
+        //public RelayCommand SaveGame2Command => new RelayCommand(execute => SaveGameStats());
 
         private void StartGame()
         {
@@ -146,8 +152,12 @@ namespace MemorySpil.ViewModels
             }
         }
 
-        private async Task CheckForMatch()
+        private Task CheckForMatch()
         {
+            // Null check - hvis kortene ikke er sat, return
+            if (_firstSelectedCard == null || _secondSelectedCard == null)
+                return Task.CompletedTask;
+
             if (_firstSelectedCard.Symbol == _secondSelectedCard.Symbol)
             {
                 // Match fundet!
@@ -177,6 +187,8 @@ namespace MemorySpil.ViewModels
             // Opdater UI
             OnPropertyChanged(nameof(Cards));
             OnPropertyChanged(nameof(GameStatus));
+            
+            return Task.CompletedTask;
         }
 
         private void StartNewGame()

@@ -35,7 +35,7 @@ namespace MemorySpil.Model
                 CompletedAt.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 
-        public static bool TryParseCsv(string line, out GameStats stats)
+        public static bool TryParseCsv(string line, out GameStats? stats)
         {
             stats = null;
             if (string.IsNullOrWhiteSpace(line)) return false;
