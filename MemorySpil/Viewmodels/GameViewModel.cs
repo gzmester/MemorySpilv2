@@ -100,6 +100,8 @@ namespace MemorySpil.ViewModels
         // Kalder vores MVVM RelayCommand, for at gemme spil resultat
         public ICommand SaveGameCommand => new RelayCommand(() => SaveGameStats());
 
+        //public RelayCommand SaveGame2Command => new RelayCommand(execute => SaveGameStats());
+
         private void StartGame()
         {
             _gameStartTime = DateTime.Now;
