@@ -9,6 +9,5 @@ namespace MemorySpil.Model
         public int Moves { get; set; }
         public TimeSpan GameTime { get; set; }
         public DateTime CompletedAt { get; set; }
-
     }
 }
