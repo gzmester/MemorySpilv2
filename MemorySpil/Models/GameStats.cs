@@ -3,7 +3,7 @@
 
 namespace MemorySpil.Model
 {
-    public class Cards
+    public class GameStats
     {
         public string PlayerName { get; set; }
         public int Moves { get; set; }
