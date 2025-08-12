@@ -30,14 +30,14 @@ namespace MemorySpil.ViewModels
             
             // Opret vores kort // kalder GenerateCards inde i Cards model
             _allCards = Cards.GenerateCards();
-            Cards = new ObservableCollection<Cards>(_allCards);
+            CardsCollection = new ObservableCollection<Cards>(_allCards);
             
             // Start spillet
             StartGame();
         }
 
         // Properties til binding
-        public ObservableCollection<Cards> Cards { get; set; }
+        public ObservableCollection<Cards> CardsCollection { get; set; }
 
         public string PlayerName
         {
@@ -183,10 +183,10 @@ namespace MemorySpil.ViewModels
         {
             // Kalder GenerateCards for at oprette nye kort
             var newCards = Cards.GenerateCards();
-            Cards.Clear();
+            CardsCollection.Clear();
             foreach (var card in newCards)
             {
-                Cards.Add(card);
+                CardsCollection.Add(card);
             }
             
             _allCards.Clear();
