@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MemorySpil.ViewModels;
 
 namespace MemorySpil;
 
@@ -19,9 +20,11 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        GameViewModel vm = new GameViewModel();
+        DataContext = vm;
     }
 
-    private void PlayerNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    /*private void PlayerNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
 
     }
@@ -29,5 +32,5 @@ public partial class MainWindow : Window
     private void NewGameBtn_Click(object sender, RoutedEventArgs e)
     {
         // TODO: Add logic to start a new game
-    }
+    }*/
 }
