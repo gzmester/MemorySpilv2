@@ -24,6 +24,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
+            
+            
+            
+            <!--Card Grid-->
             <Grid Grid.Column="0" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -39,6 +43,9 @@
                 </Grid.ColumnDefinitions>
             </Grid>
 
+            
+            
+            
             <Border Grid.Column="1" CornerRadius="10" Background="#3A3D42" Opacity="100">
                 <StackPanel Margin="5">
                     <TextBlock Text="Memory Game" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,20"/>
