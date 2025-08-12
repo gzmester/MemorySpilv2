@@ -15,13 +15,13 @@ namespace MemorySpil.ViewModels
     {
         private readonly List<Cards> _allCards;
         private readonly IGameStatsRepository _statsRepository;
-        private Cards _firstSelectedCard;
-        private Cards _secondSelectedCard;
+        private Cards? _firstSelectedCard;
+        private Cards? _secondSelectedCard;
         private bool _isProcessing;
         private int _moves;
         private DateTime _gameStartTime;
         private bool _gameCompleted;
-        private string _playerName;
+        private string? _playerName;
 
         public GameViewModel()
         {
@@ -29,7 +29,7 @@ namespace MemorySpil.ViewModels
             _statsRepository = new FileGameStatsRepository("game_stats.csv");
             
             // Opret vores kort // kalder GenerateCards inde i Cards model
-            _allCards = Cards.GenerateCards();
+            _allCards = Model.Cards.GenerateCards();
             Cards = new ObservableCollection<Cards>(_allCards);
             
             // Start spillet
@@ -182,7 +182,7 @@ namespace MemorySpil.ViewModels
         private void StartNewGame()
         {
             // Kalder GenerateCards for at oprette nye kort
-            var newCards = Cards.GenerateCards();
+            var newCards = Model.Cards.GenerateCards();
             Cards.Clear();
             foreach (var card in newCards)
             {
