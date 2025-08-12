@@ -92,15 +92,13 @@ namespace MemorySpil.ViewModels
         }
 
         // Kalder vores MVVM RelayCommand, for at håndtere et kort træk
-        public ICommand CardClickCommand => new RelayCommand(param => OnCardClick((Cards)param));
+        public RelayCommand CardClickCommand => new RelayCommand(execute => OnCardClick((Cards)execute));
 
         // Kalder vores MVVM RelayCommand, for at starte et nyt spil
-        public ICommand NewGameCommand => new RelayCommand(() => StartNewGame());
+        public RelayCommand NewGameCommand => new RelayCommand(execute => StartNewGame());
 
         // Kalder vores MVVM RelayCommand, for at gemme spil resultat
-        public ICommand SaveGameCommand => new RelayCommand(() => SaveGameStats());
-
-        //public RelayCommand SaveGame2Command => new RelayCommand(execute => SaveGameStats());
+        public RelayCommand SaveGameCommand => new RelayCommand(execute => SaveGameStats());
 
         private void StartGame()
         {
