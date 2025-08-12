@@ -9,12 +9,12 @@ namespace MemorySpil.Models.MVVM
 {
     class RelayCommand : ICommand
     {
-        private Action<object> exceute;
+        private Action<object> execeute;
         private Func<object, bool> canExecute;
 
         public RelayCommand(Action<object> exceute, Func<object, bool> canExecute)
         {
-            this.exceute = exceute;
+            this.execeute = exceute;
             this.canExecute = canExecute;
         }
 
