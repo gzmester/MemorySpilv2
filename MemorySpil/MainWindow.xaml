@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemorySpil"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="500" Width="700"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStyle="None">
 
-    </Grid>
+    <Border CornerRadius="10" BorderThickness="2" Background="#A86D3E" Opacity="0.98">
+        <Border.BorderBrush>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" >
+                <GradientStop Color="Brown" Offset="0.9"/>
+                <GradientStop Color="#A95656" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Border Grid.Column="1" CornerRadius="10" Background="#3A3D42" Opacity="100">
+                <StackPanel Margin="5">
+                    
+                </StackPanel>
+            </Border>
+        </Grid>
+
+       
+
+
+        </Border>    
+    
 </Window>
