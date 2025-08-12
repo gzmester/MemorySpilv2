@@ -64,11 +64,11 @@
 
                     <!--Save Game-->
                     <Button Name="SaveGameBtn" Content="Save Game" Width="180" Height="30" Margin="0,160,0,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="NewGameBtn_Click"
-                            Command="{Binding Knap2}"/>
+                            Command="{Binding SaveGameCommand}"/>
 
                     <!--New Game-->
                     <Button Name="NewGameBtn" Content="New Game" Width="180" Height="30" Margin="0,-5,0,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="NewGameBtn_Click"
-                            Command="{Binding Knap}"/>
+                            Command="{Binding NewGameCommand}"/>
                 </StackPanel>
             </Border>
         </Grid>
