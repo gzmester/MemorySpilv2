@@ -20,4 +20,14 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    private void PlayerNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void NewGameBtn_Click(object sender, RoutedEventArgs e)
+    {
+        // TODO: Add logic to start a new game
+    }
 }
