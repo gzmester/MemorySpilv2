@@ -24,13 +24,14 @@ public partial class MainWindow : Window
         DataContext = vm;
     }
 
-    /*private void PlayerNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    private void PlayerNameTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
     {
-
+        // You can add logic here if you want to handle text changes.
+        // For now, this can be left empty or with a comment.
     }
 
     private void NewGameBtn_Click(object sender, RoutedEventArgs e)
     {
-        // TODO: Add logic to start a new game
-    }*/
+        // TODO: Add logic to start a new game here
+    }
 }
