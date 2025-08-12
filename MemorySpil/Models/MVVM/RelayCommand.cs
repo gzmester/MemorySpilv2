@@ -12,7 +12,7 @@ namespace MemorySpil.Models.MVVM
         private Action<object> exceute;
         private Func<object, bool> canExecute;
 
-        public RelayCommand(Action<object> exceute, Func<object, bool> canExecute>)
+        public RelayCommand(Action<object> exceute, Func<object, bool> canExecute)
         {
             this.exceute = exceute;
             this.canExecute = canExecute;
